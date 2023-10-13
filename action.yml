@@ -6,8 +6,6 @@ author: 'VK'
 inputs:
   token:
     required: true
-  labels:
-    required: true
 
 
 runs:
