@@ -29760,7 +29760,7 @@ async function run() {
 
     const labelexists = listlabels.includes('state: PROGRESS')
 
-    core.setOutput('LabelExists', labelexists.tostring())
+    core.setOutput('LabelExists', labelexists.toString())
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message)
