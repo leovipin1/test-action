@@ -29758,7 +29758,7 @@ async function run() {
 
     const listlabels = labels.map(obj => obj['name'])
 
-    const labelexists = listlabels.includes('state: PROGRESS')
+    const labelexists = listlabels.includes('state: NEW')
 
     core.setOutput('LabelExists', labelexists.toString())
   } catch (error) {
