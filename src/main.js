@@ -11,7 +11,7 @@ async function run() {
 
     const octokit = new github.getOctokit(token)
 
-    const labels = await octokit.rest.issues.listLabelsOnIssue({
+    const { data: labels } = await octokit.rest.issues.listLabelsOnIssue({
       owner,
       repo,
       issue_number
