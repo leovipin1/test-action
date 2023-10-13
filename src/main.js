@@ -17,7 +17,10 @@ async function run() {
       issue_number
     })
 
-    console.log(labels)
+    for (const key in labels) {
+      console.log(key)
+      console.log(labels[key])
+    }
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message)
