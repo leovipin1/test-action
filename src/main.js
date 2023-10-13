@@ -19,7 +19,7 @@ async function run() {
 
     const listlabels = labels.map(obj => obj['name'])
 
-    const labelexists = listlabels.includes('state: NEW')
+    const labelexists = listlabels.includes('state: PROGRESS')
 
     console.log(labelexists)
   } catch (error) {
