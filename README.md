@@ -18,9 +18,11 @@ follow the below instructions:
 
 1. Click the **Use this template** button at the top of the repository
 1. Select **Create a new repository**
-1. Select an owner and name for your new repository
+t1. Select an owner and name for your new repository
 1. Click **Create repository**
 1. Clone your new repository
+
+
 
 ## Initial Setup
 
