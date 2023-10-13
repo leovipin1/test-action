@@ -1,11 +1,6 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 
-let labels = core
-  .getInput('labels')
-  .split(',')
-  .map(x => x.trim())
-
 async function run() {
   try {
     const context = github.context
@@ -16,14 +11,16 @@ async function run() {
 
     const octokit = new github.getOctokit(token)
 
-    labels = labels.filter(value => ![''].includes(value))
-
-    await octokit.rest.issues.addLabels({
+    const labels = await octokit.rest.issues.listLabelsOnIssue({
       owner,
       repo,
-      issue_number,
-      labels
+      issue_number
     })
+
+    for (const key in labels) {
+      console.log(key)
+      console.log(labels[key])
+    }
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message)
