@@ -1,24 +1,29 @@
 const core = require('@actions/core')
-const { wait } = require('./wait')
+const github = require('@actions/github')
 
-/**
- * The main function for the action.
- * @returns {Promise<void>} Resolves when the action is complete.
- */
+let labels = core
+  .getInput('labels')
+  .split(',')
+  .map(x => x.trim())
+
 async function run() {
   try {
-    const ms = core.getInput('milliseconds', { required: true })
+    const context = github.context
+    const token = core.getInput('token', { required: true })
+    const owner = context.payload.repository.owner.login
+    const repo = context.payload.repository.name
+    const issue_number = context.payload.issue.number
 
-    // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    const octokit = new github.getOctokit(token)
 
-    // Log the current timestamp, wait, then log the new timestamp
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    labels = labels.filter(value => ![''].includes(value))
 
-    // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
+    await octokit.rest.issues.addLabels({
+      owner,
+      repo,
+      issue_number,
+      labels
+    })
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message)

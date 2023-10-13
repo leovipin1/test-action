@@ -1,18 +1,14 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Test Action'
+description: 'Description'
+author: 'VK'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  token:
     required: true
-    default: '1000'
+  labels:
+    required: true
 
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
 
 runs:
   using: node20
