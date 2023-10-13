@@ -12,6 +12,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@main
       - name: Label Issue
+        id: label-issue
         uses: ./
         with:
           token: ${{ secrets.TEST_PAT }}
+      - name: Label Exists
+        if: ${{ steps.label-issue.outputs.LabelExists }} == true
+        run: echo "It Exists"
+      - name: Label Doesnt Exists
+        if: ${{ steps.label-issue.outputs.LabelExists }} == false
+        run: echo "Doesnt Exists" 
