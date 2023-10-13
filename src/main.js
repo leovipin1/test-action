@@ -17,10 +17,9 @@ async function run() {
       issue_number
     })
 
-    for (const key in labels) {
-      console.log(key)
-      console.log(labels[key])
-    }
+    const listlabels = labels.map(obj => obj['name'])
+
+    console.log(listlabels)
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message)
