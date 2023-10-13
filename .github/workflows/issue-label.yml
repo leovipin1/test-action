@@ -9,6 +9,8 @@ jobs:
   issue-label:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@main
       - name: Label Issue
         uses: ./
         with:
