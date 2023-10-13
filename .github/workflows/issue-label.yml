@@ -3,7 +3,7 @@ name: Label Issue
 on:
   issues:
     types:
-      - opened
+      - edited
 
 jobs:
   issue-label:
@@ -15,4 +15,3 @@ jobs:
         uses: ./
         with:
           token: ${{ secrets.TEST_PAT }}
-          labels: "state: NEW, progress: BACKLOG"
